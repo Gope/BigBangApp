@@ -18,6 +18,7 @@ namespace dnp.cm.Gui
     /// </summary>
     public class AppBootstrapper : StructureMapBootstrapper<MainViewModel>
     {
+
         /// <summary>
         /// Konfiguriert den Container Anwendungsspezifisch.
         /// </summary>
