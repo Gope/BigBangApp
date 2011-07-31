@@ -1,0 +1,100 @@
+﻿<Application
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+			 xmlns:Gui="clr-namespace:dnp.cm.Gui" 
+			 xmlns:Views="clr-namespace:dnp.cm.Gui.Views" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:appSupport="clr-namespace:dnp.cm.ApplicationSupport.Converter;assembly=dnp.cm.ApplicationSupport" 
+			 mc:Ignorable="d" 
+			 x:Class="dnp.cm.Gui.App" >
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            
+            <ResourceDictionary.MergedDictionaries>
+            	<ResourceDictionary>
+            		<!-- Das initiale Model - öffnet die zugeordnete View (Shell)-->
+            		<Gui:AppBootstrapper x:Key="bootstrapper" />
+            	</ResourceDictionary>
+                <!-- Blend Simple Styles -->
+            	<ResourceDictionary Source="Simple Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Converter -->
+            <appSupport:SeverityToImageConverter x:Key="SeverityToImageConverter"/>
+			
+			<!-- Brushes -->
+			<SolidColorBrush x:Key="CaliburnGray" Color="#FF4E4E4E" />
+			
+			<!-- Anwendungsweite DataTemplates -->
+			<DataTemplate x:Key="TabbedRolesTemplate">
+        		<Grid>
+        			<Views:RoleView />    		
+				</Grid>
+        	</DataTemplate>
+
+            <DataTemplate x:Key="TabItemHeaderTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding RoleImage}" Stretch="Fill" Margin="1" Width="24" Height="24" />
+                    <TextBlock Text="{Binding CurrentRole.FirstName, FallbackValue=DarstellerName}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" ToolTip="2"/>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="SystemNotificationsDataTemplate">
+                <Grid d:DesignWidth="123.5" d:DesignHeight="50.75">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20"  />
+                        <ColumnDefinition Width="*"  />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition  Height="5"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="1"  Grid.Row="0"   TextWrapping="Wrap" Text="{Binding Message}" Margin="2" FontSize="10.667"  />
+                    <Separator SnapsToDevicePixels="True" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="0,1"  />
+                    <Image Grid.ColumnSpan="1" Margin="2" Grid.RowSpan="1" Source="{Binding Severity, Converter={StaticResource SeverityToImageConverter}}" Stretch="Uniform" Width="16" Height="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                </Grid>
+            </DataTemplate>
+
+            <!-- Anwendungsweite Styles -->            
+            <Style x:Key="{x:Type TextBox}">
+				<Setter Property="TextElement.FontFamily" Value="/dnp.cm.Gui;component/Assets/Fonts/#Jayne Print Hand" />
+				<Setter Property="TextElement.FontSize" Value="20" />
+				<Setter Property="TextElement.Foreground" Value="{StaticResource CaliburnGray}" />
+				<Setter Property="Control.Background" Value="{x:Null}" />
+			</Style>
+			
+			<Style x:Key="{x:Type TextBlock}">
+				<Setter Property="TextElement.FontFamily" Value="/dnp.cm.Gui;component/Assets/Fonts/#Jayne Print Hand" />
+				<Setter Property="TextElement.FontSize" Value="12" />
+				<Setter Property="TextElement.Foreground" Value="{StaticResource CaliburnGray}" />
+				<Setter Property="Control.Background" Value="{x:Null}" />
+				<Setter Property="Control.BorderBrush" Value="{x:Null}" />
+				
+				<Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+				<Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+			</Style>
+			
+			<Style x:Key="{x:Type CheckBox}">
+				<Setter Property="TextElement.FontFamily" Value="/dnp.cm.Gui;component/Assets/Fonts/#Jayne Print Hand" />
+				<Setter Property="TextElement.FontSize" Value="12" />
+				<Setter Property="TextElement.Foreground" Value="{StaticResource CaliburnGray}" />
+				<Setter Property="Control.Background" Value="{x:Null}" />
+				<Setter Property="Control.BorderBrush" Value="{x:Null}" />
+				
+				<Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+				<Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+			</Style>
+			
+			<Style x:Key="{x:Type TabControl}">
+				<Setter Property="Control.BorderBrush" Value="{x:Null}" />
+			</Style>		 
+				        	
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="dnp.cm.Gui.Views.RoleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ViewModelsDesignTime="clr-namespace:dnp.cm.Gui.ViewModelsDesignTime"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=ViewModelsDesignTime:RoleViewModelDS, IsDesignTimeCreatable=True}"
+             d:DesignHeight="300" d:DesignWidth="300">            
+             <!--xmlns:Framework="clr-namespace:CaliburnMicro.Framework;assembly=CaliburnMicro" 
+             Framework:Bind.Model="RoleViewModel">-->
+
+    
+    <StackPanel>
+    	<StackPanel Orientation="Horizontal" x:Name="_Form" Margin="0,25,0,0">
+    		<StackPanel>
+    			<TextBlock Text="Id:" />
+				<TextBlock Text="Name:" />
+				<TextBlock Text="Vorname:" />
+				<TextBlock Text="Kunde seit:" />
+				<TextBlock Text="Alter:" />
+			</StackPanel>
+			<StackPanel Margin="8,0,0,0">
+				<TextBlock Text="{Binding CurrentRole.Id}" />
+                <TextBlock Text="{ Binding CurrentRole.LastName }" />
+                <TextBlock Text="{ Binding CurrentRole.FirstName }" />
+                <TextBlock Text="{ Binding CurrentRole.FirstSeenOnAirDate, StringFormat=\{0:d\} }" />
+                <TextBlock Text="{ Binding CurrentRole.Age }" />
+			</StackPanel>  	
+		</StackPanel>
+    	<CheckBox Content="Datensatz hat Änderungen" IsChecked="{ Binding IsDirty }" Margin="0,10,0,0"/>
+    </StackPanel>
+    
+</UserControl>
